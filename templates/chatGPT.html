@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>msg Staffing</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/fevicon.png') }}" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <!-- site css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}" />
+    <!-- site css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+
+
+    <!-- color css -->
+
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.css') }}" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfect-scrollbar.css') }}" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+</head>
+
+<body class="dashboard dashboard_1">
+    {% if session['logged_in'] %}
+      <p></p>
+    {% else %}
+      {% set redirect_url = url_for('chatbotsignup') %}
+      {% if redirect_url %}
+        <script>
+          window.location.href = "{{ redirect_url }}";
+        </script>
+      {% else %}
+        <p>Condition is not true, but signup page is not available.</p>
+      {% endif %}
+    {% endif %}
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="index.html"><img class="logo_icon img-responsive"
+                                    src="https://unrivaled-lolly-d33360.netlify.app/static/media/logo_tr3.55b07347.png"
+                                    alt="#" /></a>
+                        </div>
+
+                    </div>
+                    <div class="sidebar_user_info">
+
+                        <div class="user_profle_side">
+
+                            <div class="user_infonew">
+                                <a href="/rdgpt"><button type="button" class="btn btn-outline-secondary "
+                                        style="width:250px;height:60px;font-size:16px;color:white;">New
+                                        Prompt</button></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>Previously Asked Questions</h4>
+                    <ul class="list-unstyled components" id="questionappend">
+                        <!-- {% for item in sucess_msg %}
+                        <li class="questionli" onclick="sendParagraphText(this)"> {{ item[1] }}</li>
+                    {% endfor %} -->
+                       
+
+                    </ul>
+                </div>
+
+                <div class="bottom" style="position:absolute; bottom:2px">
+                    <!-- <div class="sidebar_blog_2">
+                        <h4>Settings</h4>
+                        <ul class="list-unstyled components">
+
+
+                        </ul>
+
+                    </div> -->
+                    <div class="sidebar_blog_1">
+                        <div class="sidebar-header">
+                            <div class="logo_section">
+                                <a href="index.html"><img class="logo_icon img-responsive"
+                                        src="{{ url_for('static', filename='images/logo/logo_icon.png') }}"
+                                        alt="#" /></a>
+                            </div>
+                        </div>
+                        <div class="sidebar_user_info">
+                            <div class="icon_setting"></div>
+                            <div class="user_profle_side">
+                                <div class="user_img"><img class="img-responsive"
+                                        src="{{ url_for('static', filename='images/layout_img/newuser.png') }}"
+                                        alt="#" style="height: 40px; width:40px;"/></div>
+                                <div class="user_info">
+
+                                    <!-- <h6>{{session['user_id']}}</h6><p><span class="online_animation"></span> Online</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    {% if sucess_msg %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Logged In !!!</strong><p>Welcome to msg Staffing ChatBot</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    {% endif %}
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="fullnav">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <a href="/"><img class="img-responsive"
+                                        src="{{ url_for('static', filename='images/layout_img/msg_staff_1.png') }}"
+                                        alt="#" /></a>
+                            </div>
+                            
+                            <div class="logout">
+                                <a href="/userlogout"><button class="btn btn-sucess" id="logoutbtn">Logout</button></a>
+                            </div>
+
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont ">
+
+                    {% block body %} {% endblock %}
+
+                    <!-- footer -->
+                    <div class="container-fluid">
+                        <div class="chat" id="gptbody">
+                            <div id="topmaindiv">
+                                
+                            </div>
+                            <div v-if="loading" class="spinner hidespeaner">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+
+                        </div>
+                        <div class=" searchquestion">
+                            <form>
+                                <div class="form-group searchfooter">
+                                    <input type="eamil" hidden id="userprofileid" value="{{ session['user_id'] }}">
+                                    <input type="number" hidden id="usersquestions" value="{{ session['totalquestionnew']}}">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                        placeholder="search your question here" required></textarea><button id="searchq"
+                                        type="button" class="btn btn-dark searchbutton"><i class="fa fa-paper-plane "
+                                            style="color:black;" aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end dashboard inner -->
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <!-- wow animation -->
+    <script src="{{ url_for('static', filename='js/animate.js') }}"></script>
+    <!-- select country -->
+    <script src="{{ url_for('static', filename='js/bootstrap-select.js') }}"></script>
+    <!-- owl carousel -->
+    <script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+    <!-- chart js -->
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Chart.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/analyser.js') }}"></script>
+    <!-- nice scrollbar -->
+    <script src="{{ url_for('static', filename='js/perfect-scrollbar.min.js') }}"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- custom js -->
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chatgpt.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</body>
+
+</html>

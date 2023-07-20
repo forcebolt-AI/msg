@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}" />
+	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<title>MSG Staffing</title>
+</head>
+
+<body>
+	<div class="container">
+		{% if error_msg %}
+		<div id="sigiin"class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong>{{ error_msg }}</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		{% endif %}
+		<div class="forms-container">
+			<div class="signin-signup">
+				<form action="/signin" method="post" class="sign-in-form">
+					<h2 class="title">Sign in</h2>
+					<div class="input-field">
+						<i class="fas fa-user"></i>
+						<input type="text" name="email"placeholder="Username" required/>
+					</div>
+					<div class="input-field">
+						<i class="fas fa-lock"></i>
+						<input type="password" name="password" placeholder="Password" required/>
+					</div>
+					<input type="submit" value="Login" class="btn solid" />
+					<!-- <p class="social-text">Or Sign in with social platforms</p> -->
+					<!-- <div class="social-media">
+
+						<a href="#" class="social-icon">
+							<i class="fab fa-google"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+					</div> -->
+				</form>
+				<form action="/saveCustomer" method="post" class="sign-up-form">
+					<h2 class="title">Sign up</h2>
+					<div class="input-field">
+						<i class="fas fa-user"></i>
+						<input type="text" name="username" placeholder="Username" required/>
+					</div>
+					<div class="input-field">
+						<i class="fas fa-envelope"></i>
+						<input type="email" name="email" placeholder="Email" required/>
+					</div>
+					<div class="input-field">
+						<i class="fas fa-lock"></i>
+						<input type="password" name="password" placeholder="Password" required/>
+					</div>
+					<input type="submit" class="btn" value="Sign up" />
+					<!-- <p class="social-text">Or Sign up with social platforms</p> -->
+					<!-- <div class="social-media">
+
+						<a href="#" class="social-icon">
+							<i class="fab fa-google"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+					</div> -->
+				</form>
+			</div>
+		</div>
+
+		<div class="panels-container">
+			<div class="panel left-panel">
+				<div class="content">
+					<h3>Welcome to MSG Staffing</h3>
+					<p>
+						Your trusted partner in Staffing data analysis and decision support. Our platform, powered by
+						a revolutionary artificial intelligence model, combines the most advanced natural language
+						processing capabilities with a knowledge base specifically tailored to the staffing industry
+					</p>
+					<button class="btn transparent" id="sign-up-btn">
+						Sign up
+					</button>
+				</div>
+				<img src="https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png" class="image" alt="" />
+			</div>
+			<div class="panel right-panel">
+				<div class="content">
+					<h3>Welcome to MSG Staffing</h3>
+					<p>
+						Your trusted partner in staffing data analysis and decision support. Our platform, powered by
+						a revolutionary artificial intelligence model, combines the most advanced natural language
+						processing capabilities with a knowledge base specifically tailored to the staffing industry
+					</p>
+					<button class="btn transparent" id="sign-in-btn">
+						Sign in
+					</button>
+				</div>
+				<img src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png" class="image" alt="" />
+			</div>
+		</div>
+	</div>
+
+	<script src="{{ url_for('static', filename='js/signin.js') }}"></script>
+</body>
+
+</html>

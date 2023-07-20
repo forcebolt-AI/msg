@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container-fluid">
+   <div class="row column_title">
+      <div class="col-md-12">
+         <div class="page_title">
+            <h2>Dashboard</h2>
+         </div>
+      </div>
+   </div>
+   <div class="row column1">
+      <div class="col-md-6 col-lg-3">
+         <div class="full counter_section margin_bottom_30">
+            <div class="couter_icon">
+               <div>
+                  <i class="fa fa-user yellow_color"></i>
+               </div>
+            </div>
+            <div class="counter_no">
+               <div>
+                 
+                  <p class="total_no">{{ session['usersdata']|length }}</p>
+                  <p class="head_couter">User</p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+         <div class="full counter_section margin_bottom_30">
+            <div class="couter_icon">
+               <div>
+                  <i class="fa fa-cloud-download green_color"></i>
+               </div>
+            </div>
+            <div class="counter_no">
+               <div>
+                  <p class="total_no">{{ session['totalquestion'] }}</p>
+                  <p class="head_couter">Questions</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+         <div class="full counter_section margin_bottom_30">
+            <div class="couter_icon">
+               <div>
+                  <i class="fa fa-comments-o red_color"></i>
+               </div>
+            </div>
+            <div class="counter_no">
+               <div>
+                  <p class="total_no">{{ session['gptans']}}</p>
+                  <p class="head_couter">Answer by GPT</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+         <div class="full counter_section margin_bottom_30">
+            <div class="couter_icon">
+               <div>
+                  <i class="fa fa-comments-o red_color"></i>
+               </div>
+            </div>
+            <div class="counter_no">
+               <div>
+                  <p class="total_no">{{ session['pdfans']}}</p>
+                  <p class="head_couter">Answer by PDF</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+   <div class="row column4 graph">
+      <div class="col-md-12">
+         <h2>User Details</h2>
+         <table class="table table-bordered mt-5">
+
+
+            <thead>
+               <tr>
+                  <th scope="col">S.No</th>
+                 
+                  <th scope="col">Email</th>
+                  <th scope="col">Total Asked Question</th>
+                  <th scope="col">SignUp Date</th>
+
+               </tr>
+            </thead>
+            <tbody>
+              
+               {% for item in session['usersdata'] %}
+               <tr>
+                  <th scope="row">{{ loop.index }}</th>
+                  <td>{{ item[1] }}</td>
+                  <td>{{ item[3] }}</td>
+                  <td>{{ item[4] }}</td>
+                
+                 
+                  {% endfor %}
+               </tr>
+               
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <!-- graph -->
+   <div class="row column2 graph margin_bottom_30">
+      <div class="col-md-l2 col-lg-12">
+         <div class="white_shd full">
+            <div class="full graph_head">
+               <div class="heading1 margin_0">
+                  <h2>Extra Area Chart</h2>
+               </div>
+            </div>
+            <div class="full graph_revenue">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="content">
+                        <div class="area_chart">
+                           <canvas height="120" id="canvas"></canvas>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end graph -->
+</div>
+
+{% endblock %}
